@@ -1,0 +1,46 @@
+{
+  "name": "ssleepy-server",
+  "productName": "SSleepy Server",
+  "version": "1.0.0",
+  "description": "Server to control your computer remotely",
+  "author": "Giovani de Oliveira <giovanioliveira@outlook.com.br>",
+  "license": "MIT",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "rebuild": "npm rebuild --runtime=electron --target=9.0.2 --disturl=https://atom.io/download/atom-shell --abi=71",
+    "package-macos": "electron-packager ./ --platform=darwin --arch=x64 --out=release-builds --icon=./app/resources/icons/icon.icns --overwrite",
+    "package-windows": "electron-packager ./ --platform=win32 --arch=x64 --out=release-builds --icon=./app/resources/icons/icon.ico --overwrite --asar"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xxgicoxx/ssleepy-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xxgicoxx/ssleepy-server/issues"
+  },
+  "homepage": "https://github.com/xxgicoxx/ssleepy-server/",
+  "keywords": [
+    "ssleepy",
+    "server",
+    "control",
+    "computer"
+  ],
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "electron": "^9.0.2",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "ip": "^1.1.5",
+    "morgan": "^1.10.0",
+    "robotjs": "^0.6.0",
+    "wintools": "^0.1.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^14.1.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1"
+  }
+}
