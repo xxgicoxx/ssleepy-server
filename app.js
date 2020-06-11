@@ -1,6 +1,6 @@
 const { app } = require('electron');
 
-const { RestController, TrayController } = require('./app/controllers');
+const { RestController, TrayController, SocketController } = require('./app/controllers');
 
 const isMac = process.platform === 'darwin';
 
@@ -14,9 +14,13 @@ app.setLoginItemSettings({
 
 app.on('ready', () => {
   const restController = new RestController();
+  const socketController = new SocketController();
   const trayController = new TrayController();
 
-  restController.start();
+  restController.start().then((server) => {
+    socketController.start(server);
+  });
+
   trayController.create();
 });
 

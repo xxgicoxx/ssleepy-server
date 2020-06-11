@@ -3,8 +3,8 @@ const { RestService } = require('../services');
 const restService = new RestService();
 
 class RestController {
-  start() {
-    restService.start();
+  async start() {
+    return restService.start();
   }
 }
 
