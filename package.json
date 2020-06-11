@@ -9,7 +9,6 @@
   "scripts": {
     "start": "electron .",
     "rebuild": "npm rebuild --runtime=electron --target=9.0.2 --disturl=https://atom.io/download/atom-shell --abi=71",
-    "package-macos": "electron-packager ./ --platform=darwin --arch=x64 --out=release-builds --icon=./app/resources/icons/icon.icns --overwrite",
     "package-windows": "electron-packager ./ --platform=win32 --arch=x64 --out=release-builds --icon=./app/resources/icons/icon.ico --overwrite --asar"
   },
   "repository": {
