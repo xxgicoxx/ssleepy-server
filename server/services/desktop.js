@@ -25,7 +25,7 @@ async function next(req, res) {
   }
 }
 
-async function prev(req, res) {
+async function previous(req, res) {
   try {
     robot.keyTap('audio_prev');
 
@@ -148,7 +148,7 @@ async function rightclick(req, res) {
 module.exports = {
   playpause,
   next,
-  prev,
+  previous,
   volumeup,
   volumedown,
   mute,

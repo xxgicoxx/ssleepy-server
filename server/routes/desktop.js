@@ -7,7 +7,7 @@ routes.post('/shutdown', desktop.shutdown);
 routes.post('/restart', desktop.restart);
 routes.post('/playpause', desktop.playpause);
 routes.post('/next', desktop.next);
-routes.post('/prev', desktop.prev);
+routes.post('/previous', desktop.previous);
 routes.post('/volumeup', desktop.volumeup);
 routes.post('/volumedown', desktop.volumedown);
 routes.post('/mute', desktop.mute);
