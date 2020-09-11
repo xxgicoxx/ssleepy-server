@@ -33,16 +33,18 @@ npm start
 
 ### cURL Example
 ````
+curl --location --request POST 'http://localhost:1905/shutdown/'
+curl --location --request POST 'http://localhost:1905/restart/'
 curl --location --request POST 'http://localhost:1905/playpause/'
 curl --location --request POST 'http://localhost:1905/next/'
 curl --location --request POST 'http://localhost:1905/previous/'
 curl --location --request POST 'http://localhost:1905/volumeup/'
 curl --location --request POST 'http://localhost:1905/volumedown/'
 curl --location --request POST 'http://localhost:1905/mute/'
-curl --location --request POST 'http://localhost:1905/fullscreen/'
 curl --location --request POST 'http://localhost:1905/close/'
-curl --location --request POST 'http://localhost:1905/shutdown/'
-curl --location --request POST 'http://localhost:1905/restart/'
+curl --location --request POST 'http://localhost:1905/fullscreen/'
+curl --location --request POST 'http://localhost:1905/leftclick/'
+curl --location --request POST 'http://localhost:1905/rightclick/'
 ````
 
 ### Build
