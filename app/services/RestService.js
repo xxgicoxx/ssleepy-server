@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
 const helmet = require('helmet');
-const bodyParser = require('body-parser');
 
 const desktop = require('../../server/routes/desktop');
 
@@ -15,8 +14,8 @@ class RestService {
     app.use(cors({ origin: '*' }));
     app.use(logger('dev'));
     app.use(helmet({ hidePoweredBy: true }));
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(bodyParser.json());
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
     app.use('/', desktop);
 
     server.listen(1905);

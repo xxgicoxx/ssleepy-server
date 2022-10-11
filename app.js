@@ -3,6 +3,11 @@ const { app } = require('electron');
 const { RestController, TrayController, SocketController } = require('./app/controllers');
 
 const isMac = process.platform === 'darwin';
+const isWin = process.platform === 'win32';
+
+if (isWin) {
+  app.setAppUserModelId('SSleepy Server');
+}
 
 if (isMac) {
   app.dock.hide();
@@ -22,6 +27,11 @@ app.on('ready', () => {
   });
 
   trayController.create();
+});
+
+app.on('closed', (event) => {
+  event.preventDefault();
+  app.hide();
 });
 
 app.on('window-all-closed', () => {

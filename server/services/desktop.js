@@ -1,147 +1,164 @@
-const wintools = require('wintools');
-const robot = require('robotjs');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+const {
+  mouse, keyboard, Key, Button,
+} = require('@nut-tree/nut-js');
 
 async function playpause(req, res) {
   try {
-    robot.keyTap('audio_pause');
+    await keyboard.type(Key.AudioPause);
 
-    res.status(200);
-    res.send({});
+    res.status(201).send();
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
   }
 }
 
 async function next(req, res) {
   try {
-    robot.keyTap('audio_next');
+    await keyboard.type(Key.AudioNext);
 
-    res.status(200);
-    res.send({});
+    res.status(201).send();
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
   }
 }
 
 async function previous(req, res) {
   try {
-    robot.keyTap('audio_prev');
+    await keyboard.type(Key.AudioPrev);
 
-    res.status(200);
-    res.send({});
+    res.status(201).send();
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
   }
 }
 
 async function volumeup(req, res) {
   try {
-    robot.keyTap('audio_vol_up');
+    await keyboard.type(Key.AudioVolUp);
 
-    res.status(200);
-    res.send({});
+    res.status(201).send();
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
   }
 }
 
 async function volumedown(req, res) {
   try {
-    robot.keyTap('audio_vol_down');
+    await keyboard.type(Key.AudioVolDown);
 
-    res.status(200);
-    res.send({});
+    res.status(201).send();
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
   }
 }
 
 async function mute(req, res) {
   try {
-    robot.keyTap('audio_mute');
+    await keyboard.type(Key.AudioMute);
 
-    res.status(200);
-    res.send({});
+    res.status(201).send();
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
+  }
+}
+
+async function refresh(req, res) {
+  try {
+    await keyboard.type(Key.F5);
+
+    res.status(201).send();
+  } catch (ex) {
+    res.status(500);
+    res.send(ex);
   }
 }
 
 async function close(req, res) {
   try {
-    robot.keyTap('f4', ['alt']);
+    await keyboard.pressKey(Key.LeftAlt, Key.F4);
+    await keyboard.releaseKey(Key.LeftAlt, Key.F4);
 
-    res.status(200);
-    res.send({});
+    res.status(201).send();
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
   }
 }
 
 async function fullscreen(req, res) {
   try {
-    robot.keyTap('f11');
+    await keyboard.type(Key.F11);
 
-    res.status(200);
-    res.send({});
+    res.status(201).send();
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
   }
 }
 
 async function shutdown(req, res) {
   try {
-    wintools.shutdown.poweroff(() => {
-      res.status(200);
-      res.send({});
-    });
+    const { stdout, stderr } = await exec('shutdown /s');
+
+    res.status(200).send({ stdout, stderr });
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
   }
 }
 
 async function restart(req, res) {
   try {
-    wintools.shutdown.restart(() => {
-      res.status(200);
-      res.send({});
-    });
+    const { stdout, stderr } = await exec('shutdown /r');
+
+    res.status(200).send({ stdout, stderr });
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
   }
 }
 
 async function leftclick(req, res) {
   try {
-    robot.mouseClick();
+    await mouse.click(Button.LEFT);
 
-    res.status(200);
-    res.send({});
+    res.status(201).send();
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
   }
 }
 
 async function rightclick(req, res) {
   try {
-    robot.mouseClick('right');
+    await mouse.click(Button.RIGHT);
 
-    res.status(200);
-    res.send({});
+    res.status(201).send();
   } catch (ex) {
     res.status(500);
-    res.send({});
+    res.send(ex);
+  }
+}
+
+async function write(req, res) {
+  try {
+    const { text } = req.body;
+
+    keyboard.config.autoDelayMs = 0;
+    keyboard.type(text);
+
+    res.status(201).send();
+  } catch (ex) {
+    res.status(500);
+    res.send(ex);
   }
 }
 
@@ -152,10 +169,12 @@ module.exports = {
   volumeup,
   volumedown,
   mute,
+  refresh,
   close,
   fullscreen,
   shutdown,
   restart,
   leftclick,
   rightclick,
+  write,
 };

@@ -11,9 +11,11 @@ routes.post('/previous', desktop.previous);
 routes.post('/volumeup', desktop.volumeup);
 routes.post('/volumedown', desktop.volumedown);
 routes.post('/mute', desktop.mute);
+routes.post('/refresh', desktop.refresh);
 routes.post('/close', desktop.close);
 routes.post('/fullscreen', desktop.fullscreen);
 routes.post('/leftclick', desktop.leftclick);
 routes.post('/rightclick', desktop.rightclick);
+routes.post('/write', desktop.write);
 
 module.exports = routes;

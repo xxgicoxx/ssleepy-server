@@ -3,35 +3,29 @@ Server to control Windows remotely.
 
 ![SSleepy Server](https://i.imgur.com/s18dZiU.png)
 
-### Prerequisites
-* [Node.js](https://nodejs.org/en/) - Node.js
+# Prerequisites
+* [Node.js](https://nodejs.org/en/)
 
-### Running
-The application run locally, just package and use.
-
-### Windows Build Tools
-````
-npm install -g --production windows-build-tools
-````
-
-### Node GYP
-````
-npm install -g node-gyp
-````
-
-### Run
+# Running
+### 1. Run
 ````
 # Install dependencies
 npm install
-
-# Rebuild RobotJS
-npm run rebuild
 
 # Start
 npm start
 ````
 
-### cURL Example
+### 2. Build
+````
+# Package
+npm run dist
+
+# Get your version
+dist/SSleepy Server-2.0.0-win.zip
+````
+
+# Example
 ````
 curl --location --request POST 'http://localhost:1905/shutdown/'
 curl --location --request POST 'http://localhost:1905/restart/'
@@ -47,21 +41,12 @@ curl --location --request POST 'http://localhost:1905/leftclick/'
 curl --location --request POST 'http://localhost:1905/rightclick/'
 ````
 
-### Build
-````
-# Package
-npm run package-windows
-
-# Get your version
-release-builds/SSleepy Server-win32-x64/SSleepy Server.exe
-````
-
-### Built With
+# Built With
 * [Node.js](https://nodejs.org/en/)
 * [Electron](https://electronjs.org/)
 
-### Authors
-* **Giovani de Oliveira** - [xxgicoxx](https://github.com/xxgicoxx)
+# Authors
+* [xxgicoxx](https://github.com/xxgicoxx)
 
-### Acknowledgments
-* [FlatIcon](https://www.flaticon.com/) - Icon
+# Acknowledgments
+* [FlatIcon](https://www.flaticon.com/)

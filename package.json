@@ -1,15 +1,36 @@
 {
   "name": "ssleepy-server",
   "productName": "SSleepy Server",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Server to control your computer remotely",
   "author": "Giovani de Oliveira <giovanioliveira@outlook.com.br>",
   "license": "MIT",
   "main": "app.js",
   "scripts": {
     "start": "electron .",
-    "rebuild": "npm rebuild --runtime=electron --target=9.0.2 --disturl=https://atom.io/download/atom-shell --abi=71",
-    "package-windows": "electron-packager ./ --platform=win32 --arch=x64 --out=release-builds --icon=./app/resources/icons/icon.ico --overwrite --asar"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "productName": "SSleepy Server",
+    "appId": "dev.gico.ssleepy-server",
+    "asar": true,
+    "win": {
+      "target": [
+        "zip"
+      ],
+      "publisherName": "Giovani de Oliveira"
+    },
+    "directories": {
+      "buildResources": "./app/static"
+    },
+    "extraResources": [
+      {
+        "from": "./app/static",
+        "to": "static"
+      }
+    ]
   },
   "repository": {
     "type": "git",
@@ -26,21 +47,20 @@
     "computer"
   ],
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "@nut-tree/nut-js": "^2.3.0",
     "cors": "^2.8.5",
-    "electron": "^9.0.2",
-    "express": "^4.17.1",
-    "helmet": "^3.22.0",
+    "express": "^4.17.3",
+    "helmet": "^5.0.2",
     "ip": "^1.1.5",
     "morgan": "^1.10.0",
-    "robotjs": "^0.6.0",
-    "socket.io": "^2.3.0",
-    "wintools": "^0.1.0"
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "electron-packager": "^14.1.1",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.20.1"
+    "electron": "^21.0.0",
+    "electron-builder": "^23.3.3",
+    "electron-rebuild": "^3.2.9",
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
   }
 }

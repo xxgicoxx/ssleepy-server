@@ -9,7 +9,8 @@ let tray = null;
 
 class TrayService {
   create() {
-    tray = new Tray(path.join(__dirname, '../resources/img/sleepTemplate.png'));
+    tray = new Tray(this.getIconPath());
+
     const contextMenu = Menu.buildFromTemplate([
       {
         label: `http://${ip.address()}:1905`,
@@ -17,14 +18,14 @@ class TrayService {
       { type: 'separator' },
       {
         label: 'About',
-        click() {
+        async click() {
           shell.openExternal('https://github.com/xxgicoxx/ssleepy-server');
         },
       },
       { type: 'separator' },
       {
         label: 'Quit',
-        click() {
+        async click() {
           app.quit();
         },
       },
@@ -32,6 +33,14 @@ class TrayService {
 
     tray.setToolTip('SSleepy Server');
     tray.setContextMenu(contextMenu);
+  }
+
+  getIconPath() {
+    if (app.isPackaged) {
+      return path.join(process.resourcesPath, 'static', 'img', 'trayTemplate.png');
+    }
+
+    return `${path.join(__dirname, '../static/img/trayTemplate.png')}`;
   }
 }
 
