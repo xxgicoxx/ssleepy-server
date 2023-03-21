@@ -39,7 +39,7 @@ class TrayService {
 
   getIconPath() {
     if (app.isPackaged) {
-      return path.join(process.resourcesPath, constants.PATH_TRAY_TEMPLATE_PACKAGE);
+      return path.join(process.resourcesPath, ...constants.PATH_TRAY_TEMPLATE_PACKAGE);
     }
 
     return `${path.join(__dirname, constants.PATH_TRAY_TEMPLATE)}`;
