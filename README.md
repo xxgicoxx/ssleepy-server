@@ -1,7 +1,25 @@
 # SSleepy Server
 Server to control Windows remotely.
 
-![SSleepy Server](https://i.imgur.com/s18dZiU.png)
+<p align="center">
+  <img src="assets/imgs/sslepy.png">
+</p>
+
+# Features
+* Shutdown
+* Restart
+* Play
+* Pause
+* Next
+* Previous
+* Volume Up
+* Volume Down
+* Mute
+* Close
+* Fullscreen
+* Mouse
+* Left Click
+* Right Click
 
 # Prerequisites
 * [Node.js](https://nodejs.org/en/)

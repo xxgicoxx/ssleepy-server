@@ -4,6 +4,8 @@ const {
   mouse, keyboard, Key, Button,
 } = require('@nut-tree/nut-js');
 
+const { constants } = require('../utils');
+
 async function playpause(req, res) {
   try {
     await keyboard.type(Key.AudioPause);
@@ -106,7 +108,7 @@ async function fullscreen(req, res) {
 
 async function shutdown(req, res) {
   try {
-    const { stdout, stderr } = await exec('shutdown /s');
+    const { stdout, stderr } = await exec(constants.COMMAND_SHUTDOWN);
 
     res.status(200).send({ stdout, stderr });
   } catch (ex) {
@@ -117,7 +119,7 @@ async function shutdown(req, res) {
 
 async function restart(req, res) {
   try {
-    const { stdout, stderr } = await exec('shutdown /r');
+    const { stdout, stderr } = await exec(constants.COMMAND_RESTARTconstants.COMMAND_RESTART);
 
     res.status(200).send({ stdout, stderr });
   } catch (ex) {

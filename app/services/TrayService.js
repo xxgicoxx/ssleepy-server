@@ -5,6 +5,8 @@ const path = require('path');
 
 const ip = require('ip');
 
+const { constants } = require('../utils');
+
 let tray = null;
 
 class TrayService {
@@ -13,34 +15,34 @@ class TrayService {
 
     const contextMenu = Menu.buildFromTemplate([
       {
-        label: `http://${ip.address()}:1905`,
+        label: `${constants.PROTOCOL}://${ip.address()}:${constants.PORT}`,
       },
-      { type: 'separator' },
+      { type: constants.SEPARATOR },
       {
-        label: 'About',
+        label: constants.MENU_ABOUT,
         async click() {
-          shell.openExternal('https://github.com/xxgicoxx/ssleepy-server');
+          shell.openExternal(constants.MENU_ABOUT_LINK);
         },
       },
-      { type: 'separator' },
+      { type: constants.SEPARATOR },
       {
-        label: 'Quit',
+        label: constants.MENU_QUIT,
         async click() {
           app.quit();
         },
       },
     ]);
 
-    tray.setToolTip('SSleepy Server');
+    tray.setToolTip(constants.APP_NAME);
     tray.setContextMenu(contextMenu);
   }
 
   getIconPath() {
     if (app.isPackaged) {
-      return path.join(process.resourcesPath, 'static', 'img', 'trayTemplate.png');
+      return path.join(process.resourcesPath, constants.PATH_TRAY_TEMPLATE_PACKAGE);
     }
 
-    return `${path.join(__dirname, '../static/img/trayTemplate.png')}`;
+    return `${path.join(__dirname, constants.PATH_TRAY_TEMPLATE)}`;
   }
 }
 

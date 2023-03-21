@@ -6,16 +6,18 @@ const {
   Point,
 } = require('@nut-tree/nut-js');
 
+const { constants } = require('../utils');
+
 class SocketService {
   start(server) {
     const io = socket.listen(server);
 
-    io.on('connection', (client) => {
+    io.on(constants.ON_CONNECTION, (client) => {
       let mousePosition = 0;
       let posX = 0;
       let posY = 0;
 
-      client.on('movemouse', async (pos) => {
+      client.on(constants.ON_MOVE_MOUSE, async (pos) => {
         mousePosition = await mouse.getPosition();
 
         posX = (mousePosition.x + pos.x * 1.2);
@@ -26,11 +28,11 @@ class SocketService {
         mouse.setPosition(targetPoint);
       });
 
-      client.on('keyboard', async (value) => {
+      client.on(constants.ON_KEYBOARD, async (value) => {
         await keyboard.type(value.text);
       });
 
-      client.on('backspace', async () => {
+      client.on(constants.ON_BACKSPACE, async () => {
         await keyboard.type(Key.Backspace);
       });
     });
